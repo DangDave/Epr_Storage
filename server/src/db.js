@@ -24,6 +24,7 @@ db.exec(`
     door_side TEXT,
     row_label TEXT,
     section TEXT,
+    zone TEXT,
     pos_x REAL DEFAULT 0,
     pos_y REAL DEFAULT 0,
     width REAL DEFAULT 90,
@@ -39,6 +40,7 @@ db.exec(`
     unit_id INTEGER REFERENCES units(id),
     job_id INTEGER REFERENCES jobs(id),
     start_date TEXT,
+    end_date TEXT,
     status TEXT DEFAULT 'active'
   );
   CREATE TABLE IF NOT EXISTS floor_plan_config (
