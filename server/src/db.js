@@ -45,9 +45,10 @@ db.exec(`
   );
   CREATE TABLE IF NOT EXISTS floor_plan_config (
     id INTEGER PRIMARY KEY CHECK (id = 1),
-    walkways TEXT DEFAULT '[]'
+    walkways TEXT DEFAULT '[]',
+    texts TEXT DEFAULT '[]'
   );
-  INSERT OR IGNORE INTO floor_plan_config (id, walkways) VALUES (1, '[]');
+  INSERT OR IGNORE INTO floor_plan_config (id, walkways, texts) VALUES (1, '[]', '[]');
 `);
 
 const sizeCount = db.prepare('SELECT COUNT(*) as c FROM unit_sizes').get().c;
