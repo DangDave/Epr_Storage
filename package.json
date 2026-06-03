@@ -1,0 +1,9 @@
+{
+  "name": "epr-storage",
+  "private": true,
+  "scripts": {
+    "dev": "node server/src/server.js & cd client && npx vite --host",
+    "server": "node server/src/server.js",
+    "client": "cd client && npx vite --host"
+  }
+}
