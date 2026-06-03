@@ -51,11 +51,21 @@ db.exec(`
   INSERT OR IGNORE INTO floor_plan_config (id, walkways, texts) VALUES (1, '[]', '[]');
 `);
 
+// Add missing columns for existing databases (Render keeps the old DB)
+try { db.exec('ALTER TABLE units ADD COLUMN zone TEXT'); } catch {}
+try { db.exec('ALTER TABLE assignments ADD COLUMN end_date TEXT'); } catch {}
+try { db.exec('ALTER TABLE floor_plan_config ADD COLUMN texts TEXT DEFAULT \"[]\"'); } catch {}
+
 const sizeCount = db.prepare('SELECT COUNT(*) as c FROM unit_sizes').get().c;
 if (sizeCount === 0) {
-  db.prepare("INSERT INTO unit_sizes VALUES (1, 'Small Box', '2.4m x 2.2m', '--')").run();
-  db.prepare("INSERT INTO unit_sizes VALUES (2, 'Large Box', '2.4m x 2.2m x 2.5m', '8m³')").run();
-  db.prepare("INSERT INTO unit_sizes VALUES (3, 'Shipping Container', '--', '--')").run();
+  db.prepare("INSERT INTO unit_sizes VALUES (1, 'Modular Storage Unit', '2m x 2m x 2m', '8m³')").run();
+  db.prepare("INSERT INTO unit_sizes VALUES (2, 'Modular Storage Unit', '2m x 2m x 2m', '8m³')").run();
+  db.prepare("INSERT INTO unit_sizes VALUES (3, '20ft Container', '6m x 2.4m x 2.3m', '32m³')").run();
+} else {
+  // Update existing size names
+  db.prepare("UPDATE unit_sizes SET name='Modular Storage Unit', dimensions='2m x 2m x 2m', volume='8m³' WHERE id=1").run();
+  db.prepare("UPDATE unit_sizes SET name='Modular Storage Unit', dimensions='2m x 2m x 2m', volume='8m³' WHERE id=2").run();
+  db.prepare("UPDATE unit_sizes SET name='20ft Container', dimensions='6m x 2.4m x 2.3m', volume='32m³' WHERE id=3").run();
 }
 
 const unitCount = db.prepare('SELECT COUNT(*) as c FROM units').get().c;
