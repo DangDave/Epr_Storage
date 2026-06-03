@@ -18,20 +18,21 @@
       "size_name": "20ft Container",
       "dimensions": "6m × 2.4m × 2.3m",
       "volume": "32m³",
-      "assignment_id": 1,
-      "job_id": 1,
-      "start_date": "2026-06-01",
-      "job_name": "Test Job",
-      "job_contact": "John",
-      "job_phone": "0412345678",
-      "job_notes": null
+      "assignment_id": 33,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
+      "job_phone": null,
+      "job_notes": "rrr",
+      "street": "Brisbane Street"
     },
     {
       "id": 2,
       "unit_number": "SC-02",
       "size_id": 3,
       "type": "container",
-      "status": "available",
+      "status": "occupied",
       "door_side": "west",
       "row_label": "NE",
       "section": "ne",
@@ -44,20 +45,21 @@
       "size_name": "20ft Container",
       "dimensions": "6m × 2.4m × 2.3m",
       "volume": "32m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
-      "job_phone": null,
-      "job_notes": null
+      "assignment_id": 43,
+      "job_id": 14,
+      "start_date": "2026-04-21",
+      "job_name": "i",
+      "job_contact": "ii",
+      "job_phone": "0432389249",
+      "job_notes": "iiiiiii",
+      "street": "Brisbane Street"
     },
     {
       "id": 3,
       "unit_number": "SC-03",
       "size_id": 3,
       "type": "container",
-      "status": "available",
+      "status": "occupied",
       "door_side": "west",
       "row_label": "NE",
       "section": "ne",
@@ -70,13 +72,14 @@
       "size_name": "20ft Container",
       "dimensions": "6m × 2.4m × 2.3m",
       "volume": "32m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
-      "job_phone": null,
-      "job_notes": null
+      "assignment_id": 44,
+      "job_id": 14,
+      "start_date": "2026-04-21",
+      "job_name": "i",
+      "job_contact": "ii",
+      "job_phone": "0432389249",
+      "job_notes": "iiiiiii",
+      "street": "Brisbane Street"
     },
     {
       "id": 4,
@@ -102,14 +105,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Brisbane Street"
     },
     {
       "id": 5,
       "unit_number": "S-01",
       "size_id": 2,
       "type": "box",
-      "status": "occupied",
+      "status": "available",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -122,13 +126,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": 2,
-      "job_id": 1,
-      "start_date": "2026-06-01",
-      "job_name": "Test Job",
-      "job_contact": "John",
-      "job_phone": "0412345678",
-      "job_notes": null
+      "assignment_id": null,
+      "job_id": null,
+      "start_date": null,
+      "job_name": null,
+      "job_contact": null,
+      "job_phone": null,
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 6,
@@ -154,7 +159,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 7,
@@ -180,7 +186,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 8,
@@ -206,14 +213,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 9,
       "unit_number": "S-05",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -226,20 +234,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 16,
+      "job_id": 8,
+      "start_date": "2026-05-19",
+      "job_name": "d",
+      "job_contact": "d",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "dd",
+      "street": "Sydney Street"
     },
     {
       "id": 10,
       "unit_number": "S-06",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -252,13 +261,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 17,
+      "job_id": 8,
+      "start_date": "2026-05-19",
+      "job_name": "d",
+      "job_contact": "d",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "dd",
+      "street": "Sydney Street"
     },
     {
       "id": 11,
@@ -278,13 +288,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": 3,
-      "job_id": 2,
-      "start_date": "2026-05-31",
-      "job_name": "#123",
-      "job_contact": "5567",
-      "job_phone": "gy",
-      "job_notes": "broken "
+      "assignment_id": 18,
+      "job_id": 8,
+      "start_date": "2026-05-19",
+      "job_name": "d",
+      "job_contact": "d",
+      "job_phone": null,
+      "job_notes": "dd",
+      "street": "Sydney Street"
     },
     {
       "id": 12,
@@ -310,7 +321,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 13,
@@ -336,7 +348,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 14,
@@ -362,14 +375,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 15,
       "unit_number": "S-11",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -382,20 +396,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 10,
+      "job_id": 6,
+      "start_date": "2026-05-05",
+      "job_name": "a",
+      "job_contact": "a",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "aa",
+      "street": "Sydney Street"
     },
     {
       "id": 16,
       "unit_number": "S-12",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -408,20 +423,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 11,
+      "job_id": 6,
+      "start_date": "2026-05-05",
+      "job_name": "a",
+      "job_contact": "a",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "aa",
+      "street": "Sydney Street"
     },
     {
       "id": 17,
       "unit_number": "S-13",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -434,20 +450,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 19,
+      "job_id": 9,
+      "start_date": "2026-05-22",
+      "job_name": "f",
+      "job_contact": "f",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "ff",
+      "street": "Sydney Street"
     },
     {
       "id": 18,
       "unit_number": "S-14",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -460,20 +477,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 20,
+      "job_id": 9,
+      "start_date": "2026-05-22",
+      "job_name": "f",
+      "job_contact": "f",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "ff",
+      "street": "Sydney Street"
     },
     {
       "id": 19,
       "unit_number": "S-15",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -486,20 +504,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 21,
+      "job_id": 9,
+      "start_date": "2026-05-22",
+      "job_name": "f",
+      "job_contact": "f",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "ff",
+      "street": "Sydney Street"
     },
     {
       "id": 20,
       "unit_number": "S-16",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -512,13 +531,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 22,
+      "job_id": 9,
+      "start_date": "2026-05-22",
+      "job_name": "f",
+      "job_contact": "f",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "ff",
+      "street": "Sydney Street"
     },
     {
       "id": 21,
@@ -544,7 +564,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 22,
@@ -570,7 +591,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 23,
@@ -596,7 +618,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 24,
@@ -622,14 +645,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 25,
       "unit_number": "S-21",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -642,20 +666,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 35,
+      "job_id": 12,
+      "start_date": "2026-05-04",
+      "job_name": "a",
+      "job_contact": "a",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "aaa",
+      "street": "Sydney Street"
     },
     {
       "id": 26,
       "unit_number": "S-22",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -668,20 +693,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 34,
+      "job_id": 12,
+      "start_date": "2026-05-04",
+      "job_name": "a",
+      "job_contact": "a",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "aaa",
+      "street": "Sydney Street"
     },
     {
       "id": 27,
       "unit_number": "S-23",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "south",
       "row_label": "NW",
       "section": "nw",
@@ -694,13 +720,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 36,
+      "job_id": 12,
+      "start_date": "2026-05-04",
+      "job_name": "a",
+      "job_contact": "a",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "aaa",
+      "street": "Sydney Street"
     },
     {
       "id": 28,
@@ -726,7 +753,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Sydney Street"
     },
     {
       "id": 29,
@@ -752,7 +780,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 30,
@@ -778,7 +807,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 31,
@@ -804,7 +834,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 32,
@@ -830,7 +861,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 33,
@@ -856,7 +888,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 34,
@@ -882,7 +915,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 35,
@@ -908,7 +942,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 36,
@@ -934,7 +969,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Melbourne Street"
     },
     {
       "id": 37,
@@ -960,7 +996,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 38,
@@ -986,14 +1023,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Adelaide Street"
     },
     {
       "id": 39,
       "unit_number": "L-03",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1006,13 +1044,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 29,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Adelaide Street"
     },
     {
       "id": 40,
@@ -1038,7 +1077,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Darwin Street"
     },
     {
       "id": 41,
@@ -1064,7 +1104,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 42,
@@ -1090,7 +1131,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 43,
@@ -1116,7 +1158,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 44,
@@ -1142,7 +1185,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 45,
@@ -1168,7 +1212,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 46,
@@ -1194,7 +1239,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 47,
@@ -1220,7 +1266,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 48,
@@ -1246,7 +1293,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 49,
@@ -1272,14 +1320,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Adelaide Street"
     },
     {
       "id": 50,
       "unit_number": "L-14",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1292,13 +1341,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 30,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Darwin Street"
     },
     {
       "id": 51,
@@ -1324,7 +1374,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Darwin Street"
     },
     {
       "id": 52,
@@ -1350,7 +1401,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 53,
@@ -1376,7 +1428,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 54,
@@ -1402,7 +1455,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 55,
@@ -1428,7 +1482,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 56,
@@ -1454,7 +1509,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 57,
@@ -1480,7 +1536,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 58,
@@ -1506,7 +1563,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 59,
@@ -1532,14 +1590,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Adelaide Street"
     },
     {
       "id": 60,
       "unit_number": "L-24",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1552,20 +1611,21 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 27,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Adelaide Street"
     },
     {
       "id": 61,
       "unit_number": "L-25",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1578,13 +1638,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 31,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Darwin Street"
     },
     {
       "id": 62,
@@ -1610,7 +1671,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Darwin Street"
     },
     {
       "id": 63,
@@ -1636,7 +1698,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 64,
@@ -1662,7 +1725,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 65,
@@ -1688,7 +1752,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 66,
@@ -1714,7 +1779,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 67,
@@ -1740,14 +1806,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Canberra Street"
     },
     {
       "id": 68,
       "unit_number": "L-32",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1760,13 +1827,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
-      "job_phone": null,
-      "job_notes": null
+      "assignment_id": 42,
+      "job_id": 14,
+      "start_date": "2026-04-21",
+      "job_name": "i",
+      "job_contact": "ii",
+      "job_phone": "0432389249",
+      "job_notes": "iiiiiii",
+      "street": "Canberra Street"
     },
     {
       "id": 69,
@@ -1792,14 +1860,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Adelaide Street"
     },
     {
       "id": 70,
       "unit_number": "L-34",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1812,13 +1881,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 28,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Adelaide Street"
     },
     {
       "id": 71,
@@ -1844,14 +1914,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Darwin Street"
     },
     {
       "id": 72,
       "unit_number": "L-36",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1864,13 +1935,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
+      "assignment_id": 32,
+      "job_id": 11,
+      "start_date": "2026-04-07",
+      "job_name": "r",
+      "job_contact": "r",
       "job_phone": null,
-      "job_notes": null
+      "job_notes": "rrr",
+      "street": "Darwin Street"
     },
     {
       "id": 73,
@@ -1896,7 +1968,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 74,
@@ -1922,7 +1995,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 75,
@@ -1948,7 +2022,8 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 76,
@@ -1974,14 +2049,15 @@
       "job_name": null,
       "job_contact": null,
       "job_phone": null,
-      "job_notes": null
+      "job_notes": null,
+      "street": "Perth Street"
     },
     {
       "id": 77,
       "unit_number": "L-41",
       "size_id": 2,
       "type": "box",
-      "status": "available",
+      "status": "occupied",
       "door_side": "east",
       "row_label": "SW",
       "section": "sw",
@@ -1994,13 +2070,14 @@
       "size_name": "Modular Storage Unit",
       "dimensions": "2m × 2m × 2m",
       "volume": "8m³",
-      "assignment_id": null,
-      "job_id": null,
-      "start_date": null,
-      "job_name": null,
-      "job_contact": null,
-      "job_phone": null,
-      "job_notes": null
+      "assignment_id": 41,
+      "job_id": 14,
+      "start_date": "2026-04-21",
+      "job_name": "i",
+      "job_contact": "ii",
+      "job_phone": "0432389249",
+      "job_notes": "iiiiiii",
+      "street": "Canberra Street"
     }
   ],
   "walkways": [
@@ -2032,7 +2109,8 @@
       "x1": 255.12,
       "y1": 1155.185002855822,
       "x2": 256.1,
-      "y2": 980.7433568145348
+      "y2": 980.7433568145348,
+      "label": "Canberra"
     },
     {
       "x1": 256.1,
@@ -2056,7 +2134,8 @@
       "x1": 457,
       "y1": 1156.1650121032449,
       "x2": 458.96,
-      "y2": 981.7233660619577
+      "y2": 981.7233660619577,
+      "label": "Adelaide"
     },
     {
       "x1": 457.98,
@@ -2086,7 +2165,8 @@
       "x1": 661.82,
       "y1": 1155.185002855822,
       "x2": 662.8,
-      "y2": 1021.9037452062992
+      "y2": 1021.9037452062992,
+      "label": "Darwin"
     },
     {
       "x1": 662.8,
@@ -2122,7 +2202,8 @@
       "x1": 889.18,
       "y1": 1096.3844480104442,
       "x2": 1176.32,
-      "y2": 1096.3844480104442
+      "y2": 1096.3844480104442,
+      "label": "Perth"
     },
     {
       "x1": 1176.32,
@@ -2134,7 +2215,8 @@
       "x1": 779.42,
       "y1": 985.6434030516496,
       "x2": 784.32,
-      "y2": 639.7001387113444
+      "y2": 639.7001387113444,
+      "label": "Brisbane"
     },
     {
       "x1": 684.36,
@@ -2146,7 +2228,8 @@
       "x1": 684.36,
       "y1": 717.1208692577583,
       "x2": 263.94,
-      "y2": 716.1408600103354
+      "y2": 716.1408600103354,
+      "label": "Sydney"
     },
     {
       "x1": 263.94,
@@ -2170,8 +2253,64 @@
       "x1": 682.4,
       "y1": 917.0427557320423,
       "x2": 129.68,
-      "y2": 915.0827372371964
+      "y2": 915.0827372371964,
+      "label": "Melbourne"
     }
   ],
-  "savedAt": "2026-05-31T10:32:03.415Z"
+  "texts": [
+    {
+      "x": 500,
+      "y": 500,
+      "text": "Sydney Street",
+      "type": "text",
+      "rotation": 0
+    },
+    {
+      "x": 407,
+      "y": 953,
+      "text": "Melbourne Street",
+      "type": "text"
+    },
+    {
+      "x": 406,
+      "y": 760,
+      "text": "Sydney Street",
+      "type": "text"
+    },
+    {
+      "x": 893,
+      "y": 1049,
+      "text": "Perth Street",
+      "type": "text"
+    },
+    {
+      "x": 735,
+      "y": 867,
+      "text": "Brisbane Street",
+      "type": "text",
+      "rotation": -90
+    },
+    {
+      "x": 422,
+      "y": 1133,
+      "text": "Adelaide Street",
+      "type": "text",
+      "rotation": -90
+    },
+    {
+      "x": 234,
+      "y": 1123,
+      "text": "Canberra Street",
+      "type": "text",
+      "rotation": -90
+    },
+    {
+      "x": 630,
+      "y": 1139,
+      "text": "Darwin Street",
+      "type": "text",
+      "rotation": -90
+    }
+  ],
+  "savedAt": "2026-06-03T08:33:33.377Z"
 }

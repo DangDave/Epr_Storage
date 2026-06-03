@@ -217,45 +217,52 @@ function ActiveList({ assignments, refresh, headers }) {
 }
 
 // ---- Jobs Panel ----
-function JobsPanel({ jobs, refresh, headers }) {
-  const [show, setShow] = useState(false);
+function JobsPanel({ jobs: jobsList, refresh, headers }) {
+  const [showForm, setShowForm] = useState(false);
   const [edit, setEdit] = useState(null);
   const [form, setForm] = useState({ name: '', contact: '', phone: '', notes: '' });
+  const [expanded, setExpanded] = useState(null);
+  const [jobAssignments, setJobAssignments] = useState([]);
+  const [availUnits, setAvailUnits] = useState([]);
+  const [addUnitId, setAddUnitId] = useState('');
 
-  const open = (j) => { setEdit(j); setForm(j ? { name: j.name, contact: j.contact||'', phone: j.phone||'', notes: j.notes||'' } : { name: '', contact: '', phone: '', notes: '' }); setShow(true); };
+  const open = (j) => { setEdit(j); setForm(j ? { name: j.name, contact: j.contact||'', phone: j.phone||'', notes: j.notes||'' } : { name: '', contact: '', phone: '', notes: '' }); setShowForm(true); };
+  const save = async (e) => { e.preventDefault(); if (!form.name.trim()) return; if (edit) await axios.put('/api/jobs/'+edit.id, form, { headers }); else await axios.post('/api/jobs', form, { headers }); setShowForm(false); refresh(); };
+  const endJob = async (j) => { if (!confirm('End ALL active units for "'+j.name+'"?') ) return; try { const res = await axios.get('/api/assignments', { headers }); const active = res.data.filter(a => a.job_id===j.id && a.status==='active'); if (!active.length) { alert('No active'); return; } await axios.patch('/api/assignments/'+active[0].id+'/end', { endAll:true }, { headers }); refresh(); } catch(err) { alert(err.response?.data?.error||'Cannot end'); } };
+  const del = async (j) => { if (!confirm('Delete '+j.name+'?')) return; try { await axios.delete('/api/jobs/'+j.id, { headers }); refresh(); } catch(err) { alert(err.response?.data?.error||'Cannot delete'); } };
 
-  const save = async (e) => {
-    e.preventDefault();
-    if (!form.name.trim()) return;
-    if (edit) await axios.put(`/api/jobs/${edit.id}`, form, { headers });
-    else await axios.post('/api/jobs', form, { headers });
-    setShow(false); refresh();
+  const expand = async (j) => {
+    if (expanded === j.id) { setExpanded(null); return; }
+    const res = await axios.get('/api/assignments', { headers });
+    setJobAssignments(res.data.filter(a => a.job_id === j.id && a.status === 'active'));
+    const unitsRes = await axios.get('/api/units', { headers });
+    setAvailUnits(unitsRes.data.filter(u => u.status === 'available' || u.status === 'reserved'));
+    setExpanded(j.id);
   };
 
-  const endJob = async (j) => {
-    if (!confirm(`End ALL active units for "${j.name}"?`)) return;
+  const addUnit = async (jobId) => {
+    if (!addUnitId) return;
     try {
-      // Get all active assignments for this job and end them
-      const res = await axios.get('/api/assignments', { headers });
-      const active = res.data.filter(a => a.job_id === j.id && a.status === 'active');
-      if (active.length === 0) { alert('No active assignments for this job.'); return; }
-      await axios.patch(`/api/assignments/${active[0].id}/end`, { endAll: true }, { headers });
+      await axios.post('/api/assignments', { unit_id: parseInt(addUnitId), job_id: jobId, start_date: new Date().toISOString().split('T')[0] }, { headers });
+      setAddUnitId(''); expand(jobsList.find(j => j.id === jobId)); // refresh expanded
       refresh();
-    } catch (err) { alert(err.response?.data?.error || 'Cannot end'); }
+    } catch (err) { alert(err.response?.data?.error || 'Cannot add'); }
   };
 
-  const del = async (j) => {
-    if (!confirm('Delete ' + j.name + '?')) return;
-    try { await axios.delete(`/api/jobs/${j.id}`, { headers }); refresh(); }
-    catch (err) { alert(err.response?.data?.error || 'Cannot delete'); }
+  const removeUnit = async (assignmentId) => {
+    if (!confirm('Remove this unit from the job?')) return;
+    await axios.patch('/api/assignments/'+assignmentId+'/end', {}, { headers });
+    const j = jobsList.find(j => j.id === expanded);
+    if (j) expand(j);
+    refresh();
   };
 
   return (
     <div>
       <button onClick={() => open(null)} style={{ width: '100%', padding: '8px', background: C.orange, color: '#fff', border: 'none', borderRadius: 6, fontSize: 13, fontWeight: 600, cursor: 'pointer', marginBottom: 12 }}>+ New Job</button>
 
-      {show && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }} onClick={() => setShow(false)}>
+      {showForm && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }} onClick={() => setShowForm(false)}>
           <form onSubmit={save} onClick={e => e.stopPropagation()} style={{ background: '#fff', padding: 24, borderRadius: 12, width: 400, boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}>
             <h3 style={{ margin: '0 0 16px' }}>{edit ? 'Edit Job' : 'New Job'}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -266,26 +273,56 @@ function JobsPanel({ jobs, refresh, headers }) {
             </div>
             <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
               <button type="submit" style={{ flex: 1, padding: 10, background: C.orange, color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer' }}>{edit ? 'Update' : 'Create'}</button>
-              <button type="button" onClick={() => setShow(false)} style={{ padding: 10, background: '#f1f5f9', border: 'none', borderRadius: 8, cursor: 'pointer' }}>Cancel</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ padding: 10, background: '#f1f5f9', border: 'none', borderRadius: 8, cursor: 'pointer' }}>Cancel</button>
             </div>
           </form>
         </div>
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {jobs.map(j => (
-          <div key={j.id} style={{ background: '#fff', padding: 10, borderRadius: 8, border: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontWeight: 600, fontSize: 13 }}>{j.name}</div>
-              <div style={{ fontSize: 11, color: C.gray }}>{j.contact || 'No contact'} · {j.active_assignments || 0} active</div>
+        {jobsList.map(j => {
+          const isExp = expanded === j.id;
+          return (
+            <div key={j.id} style={{ background: '#fff', borderRadius: 8, border: '1px solid ' + (isExp ? '#eab308' : '#f1f5f9'), overflow: 'hidden' }}>
+              <div onClick={() => expand(j)} style={{ padding: 10, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 13 }}>{j.name}</div>
+                  <div style={{ fontSize: 11, color: C.gray }}>{j.contact || 'No contact'} · {j.active_assignments || 0} active boxes</div>
+                </div>
+                <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+                  <span style={{ fontSize: 10, color: '#94a3b8' }}>{isExp ? '▲' : '▼'}</span>
+                  {j.active_assignments > 0 && <button onClick={e => { e.stopPropagation(); endJob(j); }} style={{ ...btnSm, color: '#dc2626' }}>End All</button>}
+                  <button onClick={e => { e.stopPropagation(); open(j); }} style={{ ...btnSm, color: C.orange }}>Edit</button>
+                  <button onClick={e => { e.stopPropagation(); del(j); }} style={{ ...btnSm, color: '#dc2626' }}>Del</button>
+                </div>
+              </div>
+              {isExp && (
+                <div style={{ padding: '10px 14px', borderTop: '1px solid #f1f5f9', background: '#fafafa' }}>
+                  {jobAssignments.length > 0 ? (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 10 }}>
+                      {jobAssignments.map(a => (
+                        <div key={a.id} style={{ padding: '4px 10px', background: '#fee2e2', borderRadius: 4, fontSize: 11, border: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 6 }}>
+                          {a.unit_number}
+                          <button onClick={() => removeUnit(a.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 10, color: '#dc2626', padding: 0 }}>✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 10 }}>No active boxes assigned.</div>
+                  )}
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <select value={addUnitId} onChange={e => setAddUnitId(e.target.value)} style={{ flex: 1, padding: '6px 8px', fontSize: 12, border: '1px solid #d1d5db', borderRadius: 6 }}>
+                      <option value="">+ Add a box...</option>
+                      {availUnits.map(u => <option key={u.id} value={u.id}>{u.unit_number} ({u.street || u.size_name})</option>)}
+                    </select>
+                    <button onClick={() => addUnit(j.id)} disabled={!addUnitId}
+                      style={{ padding: '6px 12px', background: '#eab308', color: '#fff', border: 'none', borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: 'pointer', opacity: addUnitId ? 1 : 0.5 }}>Add</button>
+                  </div>
+                </div>
+              )}
             </div>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {j.active_assignments > 0 && <button onClick={() => endJob(j)} style={{ ...btnSm, color: '#dc2626' }}>End</button>}
-              <button onClick={() => open(j)} style={{ ...btnSm, color: C.orange }}>Edit</button>
-              <button onClick={() => del(j)} style={{ ...btnSm, color: '#dc2626' }}>Del</button>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

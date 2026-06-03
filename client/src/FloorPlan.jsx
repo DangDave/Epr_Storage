@@ -8,17 +8,20 @@ export default function FloorPlan({ token }) {
   const [hovered, setHovered] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [drawMode, setDrawMode] = useState(false);
-  const [labelLine, setLabelLine] = useState(null); // { index, label }
+  const [textMode, setTextMode] = useState(false);
+  const [draggingText, setDraggingText] = useState(null); // { index, sx, sy, ox, oy }
+  const [labelLine, setLabelLine] = useState(null);
   const [units, setUnits] = useState([]);
   const [dragging, setDragging] = useState(null);
   const [drawing, setDrawing] = useState(null);
   const [drawnLines, setDrawnLines] = useState([]);
+  const [textLabels, setTextLabels] = useState([]);
   const [modified, setModified] = useState(new Set());
   const svgRef = useRef(null);
 
   useEffect(() => {
     axios.get('/api/floor-plan', { headers: { Authorization: `Bearer ${token}` } })
-      .then(res => { setData(res.data); setUnits(res.data.units.map(u => ({...u}))); if (res.data.walkways) setDrawnLines(res.data.walkways); })
+      .then(res => { setData(res.data); setUnits(res.data.units.map(u => ({...u}))); if (res.data.walkways) setDrawnLines(res.data.walkways); if (res.data.texts) setTextLabels(res.data.texts); })
       .catch(console.error).finally(() => setLoading(false));
   }, [token]);
 
@@ -32,6 +35,20 @@ export default function FloorPlan({ token }) {
   }, [editMode]);
 
   const handleMouseMove = useCallback((e) => {
+    if (draggingText) {
+      if (e.shiftKey) {
+        // Rotate: angle based on horizontal drag
+        const dx = e.clientX - draggingText.sx;
+        const angle = draggingText.rotation + Math.round(dx / 2);
+        setTextLabels(prev => prev.map((t, i) => i === draggingText.index ? { ...t, rotation: angle } : t));
+      } else {
+        // Move
+        const dx = (e.clientX - draggingText.sx) * draggingText.scaleX;
+        const dy = (e.clientY - draggingText.sy) * draggingText.scaleY;
+        setTextLabels(prev => prev.map((t, i) => i === draggingText.index ? { ...t, x: Math.round(draggingText.ox + dx), y: Math.round(draggingText.oy + dy) } : t));
+      }
+      return;
+    }
     if (dragging) {
       const dx = (e.clientX - dragging.sx) * dragging.scaleX, dy = (e.clientY - dragging.sy) * dragging.scaleY;
       setUnits(prev => prev.map(u => u.id === dragging.id ? { ...u, pos_x: Math.round((dragging.ox+dx)*10)/10, pos_y: Math.round((dragging.oy+dy)*10)/10 } : u));
@@ -43,7 +60,7 @@ export default function FloorPlan({ token }) {
       const y = vb.y + (e.clientY - rect.top) * vb.height / rect.height;
       setDrawing(prev => ({ ...prev, x2: x, y2: y }));
     }
-  }, [dragging, drawing]);
+  }, [dragging, drawing, draggingText]);
 
   const handleMouseUp = useCallback(() => {
     if (drawing && (Math.abs(drawing.x2-drawing.x1) > 3 || Math.abs(drawing.y2-drawing.y1) > 3)) {
@@ -51,17 +68,26 @@ export default function FloorPlan({ token }) {
     }
     setDrawing(null);
     setDragging(null);
+    setDraggingText(null);
   }, [drawing]);
 
   // ---- Draw mode ----
   const handleCanvasDown = useCallback((e) => {
+    if (textMode) {
+      const svg = svgRef.current, rect = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+      const x = Math.round(vb.x + (e.clientX - rect.left) * vb.width / rect.width);
+      const y = Math.round(vb.y + (e.clientY - rect.top) * vb.height / rect.height);
+      const txt = prompt('Enter text for floor plan:');
+      if (txt && txt.trim()) setTextLabels(prev => [...prev, { x, y, text: txt.trim(), type: 'text' }]);
+      return;
+    }
     if (!drawMode) return;
     // Allow drawing anywhere on the SVG
     const svg = svgRef.current, rect = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
     const x = vb.x + (e.clientX - rect.left) * vb.width / rect.width;
     const y = vb.y + (e.clientY - rect.top) * vb.height / rect.height;
     setDrawing({ x1: x, y1: y, x2: x, y2: y });
-  }, [drawMode]);
+  }, [drawMode, textMode]);
 
   // ---- Save ----
   const save = async () => {
@@ -69,8 +95,8 @@ export default function FloorPlan({ token }) {
     // Save unit positions
     const ups = units.filter(u => modified.has(u.id)).map(u => ({ id: u.id, position_x: u.pos_x, position_y: u.pos_y, width: u.width, height: u.height }));
     if (ups.length) await axios.post('/api/units/batch-positions', { updates: ups }, { headers: h });
-    // Save walkways
-    if (drawnLines.length) await axios.put('/api/floor-plan', { walkways: drawnLines }, { headers: h });
+    // Save walkways & texts
+    await axios.put('/api/floor-plan', { walkways: drawnLines, texts: textLabels }, { headers: h });
     setModified(new Set()); alert('Saved');
   };
 
@@ -94,15 +120,11 @@ export default function FloorPlan({ token }) {
         <div style={{ display:'flex', gap:8, alignItems:'center' }}>
           {editMode && modified.size > 0 && <span style={{ fontSize:13, color:'#ea580c' }}>{modified.size} moved</span>}
           {drawMode && <span style={{ fontSize:13, color:'#3b82f6' }}>Click & drag to draw lines — {drawnLines.length} drawn</span>}
-          <button onClick={() => { setEditMode(!editMode); setDrawMode(false); setDragging(null); }}
+          <button onClick={() => { setEditMode(!editMode); setDrawMode(false); setTextMode(false); setDragging(null); setDraggingText(null); }}
             style={{ padding:'6px 14px', fontSize:13, fontWeight:600, color:'#fff', background:editMode?'#dc2626':'#eab308', border:'none', borderRadius:6, cursor:'pointer' }}>
             {editMode ? 'Done' : 'Edit'}
           </button>
-          <button onClick={() => { setDrawMode(!drawMode); setEditMode(false); setDrawing(null); }}
-            style={{ padding:'6px 14px', fontSize:13, fontWeight:600, color:'#fff', background:drawMode?'#dc2626':'#3b82f6', border:'none', borderRadius:6, cursor:'pointer' }}>
-            {drawMode ? 'Stop' : 'Draw Lines'}
-          </button>
-          {(editMode || drawMode) && <button onClick={save}
+          {(editMode || drawMode || textMode) && <button onClick={save}
             style={{ padding:'6px 14px', fontSize:13, fontWeight:600, color:'#fff', background:'#16a34a', border:'none', borderRadius:6, cursor:'pointer' }}>Save</button>}
         </div>
       </div>
@@ -111,7 +133,6 @@ export default function FloorPlan({ token }) {
         <span style={{display:'inline-flex',alignItems:'center',gap:4}}><span style={{width:12,height:12,borderRadius:2,background:'#fef9c3',border:'1.5px solid #1e293b',display:'inline-block'}} /> Available</span>
         <span style={{display:'inline-flex',alignItems:'center',gap:4}}><span style={{width:12,height:12,borderRadius:2,background:'#fee2e2',border:'1.5px solid #1e293b',display:'inline-block'}} /> Occupied</span>
         <span style={{display:'inline-flex',alignItems:'center',gap:4}}><span style={{width:12,height:12,borderRadius:2,background:'#bfdbfe',border:'1.5px solid #1e293b',display:'inline-block'}} /> Reserved</span>
-        {drawMode && <span style={{color:'#3b82f6'}}>— Drawing mode active</span>}
       </div>
 
       <div style={{ background:'#fff', borderRadius:12, boxShadow:'0 1px 3px rgba(0,0,0,0.08)', overflow:'hidden' }}>
@@ -140,6 +161,34 @@ export default function FloorPlan({ token }) {
           {drawing && (
             <line x1={drawing.x1} y1={drawing.y1} x2={drawing.x2} y2={drawing.y2} stroke="#3b82f6" strokeWidth={2} strokeDasharray="8,4" />
           )}
+
+          {/* Text labels */}
+          {textLabels.map((t, i) => {
+            const isDraggingText = draggingText?.index === i;
+            return (
+              <text key={'txt-'+i} x={t.x} y={t.y} fill="#64748b" fontSize={14} fontWeight={600}
+                transform={t.rotation ? `rotate(${t.rotation}, ${t.x}, ${t.y})` : undefined}
+                style={{ cursor: textMode ? 'move' : 'pointer', userSelect: 'none' }}
+                onMouseDown={textMode ? (e) => {
+                  e.stopPropagation();
+                  const svg = svgRef.current, rect = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+                  setDraggingText({ index: i, sx: e.clientX, sy: e.clientY, ox: t.x, oy: t.y, rotation: t.rotation || 0, scaleX: vb.width/rect.width, scaleY: vb.height/rect.height });
+                } : undefined}
+                onDoubleClick={() => {
+                  const newText = prompt('Edit text:', t.text);
+                  if (newText && newText.trim()) {
+                    const updated = [...textLabels];
+                    updated[i] = { ...updated[i], text: newText.trim() };
+                    setTextLabels(updated);
+                  }
+                }}
+                onClick={textMode ? undefined : undefined}>
+                {isDraggingText && <tspan fill="#eab308">↖</tspan>}
+                {t.text}
+                <title>{textMode ? 'Drag to move · Double-click to edit' : 'Double-click to edit'}</title>
+              </text>
+            );
+          })}
 
           {/* Zone labels */}
           {Object.entries(zones).map(([name, grp]) => {

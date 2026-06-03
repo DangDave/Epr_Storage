@@ -57,22 +57,38 @@ if (sizeCount === 0) {
 
 const unitCount = db.prepare('SELECT COUNT(*) as c FROM units').get().c;
 if (unitCount === 0) {
-  const boxes = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'traced_boxes.json'), 'utf-8'));
+  // Try deploy seed first (full layout with positions), fall back to traced boxes
+  let boxes;
+  const deploySeed = path.join(__dirname, '..', 'data', 'deploy_seed.json');
+  if (fs.existsSync(deploySeed)) {
+    boxes = JSON.parse(fs.readFileSync(deploySeed, 'utf-8')).units;
+  } else {
+    boxes = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'traced_boxes.json'), 'utf-8'));
+  }
 
   const insert = db.prepare(
-    "INSERT INTO units (unit_number, size_id, type, status, door_side, row_label, section, pos_x, pos_y, width, height) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+    "INSERT INTO units (unit_number, size_id, type, status, door_side, row_label, section, pos_x, pos_y, width, height, zone) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
   );
 
-  let counts = { container: 0, small: 0, large: 0 };
+  let counts = { container: 0, box: 0 };
   for (const b of boxes) {
-    const rowLabel = b.type === 'container' ? 'NE' : (b.size_id === 1 ? 'NW' : 'SW');
-    const section = rowLabel.toLowerCase();
-    insert.run(b.unit, b.size_id, b.type, b.status || 'available', b.door, rowLabel, section, b.x, b.y, b.w, b.h);
+    const z = b.zone || (b.type === 'container' ? 'Containers' : 'Other');
+    insert.run(b.unit_number || b.unit, b.size_id, b.type || 'box', b.status || 'available', b.door_side || b.door || 'south', z, z.toLowerCase(), b.pos_x || b.x, b.pos_y || b.y, b.width || b.w, b.height || b.h, z);
     if (b.type === 'container') counts.container++;
-    else if (b.size_id === 1) counts.small++;
-    else counts.large++;
+    else counts.box++;
   }
-  console.log(`Seeded: ${counts.container} containers, ${counts.small} small, ${counts.large} large = ${counts.container+counts.small+counts.large} total`);
+  console.log(`Seeded: ${counts.container} containers, ${counts.box} boxes = ${counts.container+counts.box} total`);
+
+  // Seed walkways from deploy seed
+  if (fs.existsSync(deploySeed)) {
+    const seed = JSON.parse(fs.readFileSync(deploySeed, 'utf-8'));
+    if (seed.walkways?.length) {
+      db.prepare("UPDATE floor_plan_config SET walkways=? WHERE id=1").run(JSON.stringify(seed.walkways));
+    }
+    if (seed.texts?.length) {
+      db.prepare("UPDATE floor_plan_config SET texts=? WHERE id=1").run(JSON.stringify(seed.texts));
+    }
+  }
 }
 
 export function getWalkways() {

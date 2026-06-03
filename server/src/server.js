@@ -1,11 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import crypto from 'crypto';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import db, { getWalkways } from './db.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve built frontend in production
+const distPath = path.join(__dirname, '..', '..', 'client', 'dist');
+app.use(express.static(distPath));
 
 const ADMIN_PASSWORD = 'admin123';
 const tokens = new Set();
@@ -73,15 +80,19 @@ app.get('/api/floor-plan', requireAuth, (req, res) => {
   if (!walkways.length) walkways = getWalkways();
   const named = walkways.filter(w => w.label?.trim());
   units.forEach(u => { u.street = getStreet(u, named); });
-  res.json({ units, walkways });
+  let texts = [];
+  try { const cfg = db.prepare('SELECT texts FROM floor_plan_config WHERE id=1').get(); if (cfg?.texts) texts = JSON.parse(cfg.texts); } catch {}
+  res.json({ units, walkways, texts });
 });
 
 app.put('/api/floor-plan', requireAuth, (req, res) => {
   if (req.body.walkways) {
     db.prepare('UPDATE floor_plan_config SET walkways=? WHERE id=1').run(JSON.stringify(req.body.walkways));
-    return res.json({ saved: true });
   }
-  res.json({ error: 'no data' });
+  if (req.body.texts) {
+    db.prepare("UPDATE floor_plan_config SET texts=? WHERE id=1").run(JSON.stringify(req.body.texts));
+  }
+  res.json({ saved: true });
 });
 
 // Jobs
@@ -238,5 +249,12 @@ function getStreet(u, namedWalkways) {
   return best ? best.label + ' Street' : null;
 }
 
-const PORT = 3001;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Fallback to index.html for client-side routing
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(distPath, 'index.html'));
+  }
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
