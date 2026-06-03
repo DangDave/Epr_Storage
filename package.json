@@ -2,8 +2,7 @@
   "name": "epr-storage",
   "private": true,
   "scripts": {
-    "dev": "node server/src/server.js & cd client && npx vite --host",
-    "server": "node server/src/server.js",
-    "client": "cd client && npx vite --host"
+    "build": "cd client && npm install && npx vite build && cd ../server && npm install",
+    "start": "node server/src/server.js"
   }
 }
